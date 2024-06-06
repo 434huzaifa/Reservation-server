@@ -1,0 +1,6 @@
+.env
+node_modules
+migrations
+.src
+.vercel
+dist

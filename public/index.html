@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/hotel.png" type="image/x-icon">
+    <title>HospitalityHub</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color:rgb(115 115 115) ;
+        }
+        .mainbody{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 90vh;
+        }
+        p{
+            font-size: xx-large;
+            color: rgb(253 230 138);
+        }
+        a{
+            font-size: large;
+            text-decoration: none;
+            padding: 7px;
+            border-radius: 5px;
+            color:rgb(126 34 206);
+            background-color: rgb(243 232 255);
+        }
+        h1{
+            font-size: 48px;
+        }
+    </style>
+    <div class="mainbody">
+        <h1>HospitalityHub</h1>
+        <p>I am running</p>
+        <a>Swagger UI Doc</a>
+    </div>
+    <script>
+        let element=document.getElementsByTagName("a")[0]
+        element.setAttribute("href",`${location.origin}/docs`)
+    </script>
+</body>
+</html>
