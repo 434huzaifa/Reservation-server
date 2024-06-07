@@ -9,8 +9,7 @@ import dayjs from "dayjs";
 type IUserAuthBody = z.infer<typeof SummarySchema>;
 export function pdfGenerator(req: Request, res: Response) {
   try {
-    // SummarySchema.parse(req.body);
-
+    SummarySchema.parse(req.body);
     const doc = new PDFDocument({
       font: normalPath,
       info: { Title: "Reserve Receipt", Author: "github.com/434huzaifa" },
@@ -20,7 +19,6 @@ export function pdfGenerator(req: Request, res: Response) {
     let maxWidth = doc.page.width / 2 - 5-50;
     doc.x=doc.page.margins.left
     doc.y=doc.page.margins.top
-
     doc.pipe(fs.createWriteStream(`output.pdf`));
     doc.image(path.join(__dirname, "..", "..", "public", "sport.png"), {
       width: 80,
@@ -44,7 +42,6 @@ export function pdfGenerator(req: Request, res: Response) {
     doc.text("Shihab Ahmed\ntest@gmail.com\nPH: 051945469").moveDown(3.5)
     doc.font(boldPath)
     doc.text("ADDITIONAL AUTHORIZED DRIVER (s)").moveDown(1)
-    
     doc.text("UNIT DETAILS").moveDown(.5)
     doc.font(normalPath)
     doc.text("Unit: NISSAN ROGUE BLACK\nMake & Model: NISSAN ROGUE BLACK").moveDown(1)
@@ -57,12 +54,10 @@ export function pdfGenerator(req: Request, res: Response) {
     doc.text("Referral:\nNOTICE: Collision Insurance (CDW) - $7 per day Limits liability of damages to one's own vehicle up to $1000 in event of an accident, by waiving this coverage renter agrees to be hold liable for damages up to the entire value of the vehicle.",{width:maxWidth,lineBreak:true}).moveDown(1)
     doc.text("Accept",doc.x+maxWidth/4-20,doc.y,{width:maxWidth,continued:true}).text("Reject",doc.x+70,doc.y, {width:maxWidth}).moveDown(1)
     doc.text("Rental service may be refused anyone when done in the best interest of the renting company or customer - Rates do not include gasoline. - Reserves the right to collect deposit covering estimated rental charges.",t_x,doc.y,{width:maxWidth,lineBreak:true})
-    
     doc.x=maxWidth+11+50
     doc.y=doc.page.margins.top
     doc.font(boldPath)
     doc.fontSize(14).text("Reservation").moveDown(0.1)
-    
     doc.fontSize(12).text("RA #0121").moveDown(0.1)
     doc.font(normalPath)
     doc.fontSize(14)
@@ -89,9 +84,9 @@ export function pdfGenerator(req: Request, res: Response) {
     doc.font(normalPath)
     doc.text("Unit",doc.x+119,doc.y,{continued:true}).text("Price",doc.x+10,doc.y,{continued:true}).text("Amount",doc.x+10,doc.y).moveDown(.7)
     doc.x=maxWidth+11+50
-    doc.text("Your rental agreement offers, for an additional charge, an optional waiver to cover all or a part of your responsibility for damage to or loss of the vehicle: Before deciding whether to purchase the walver, you may wish to determine whether your own automobile insurance or credit card agreement provides you coverage for rental vehicle damage or loss and determine the amount of the deductible under your own insurance coverage. The purchase of the waiver is not mandatory. The waiver is not Insurance. I acknowledge that I have received and read a copy of this.").moveDown(.7)
+    doc.fontSize(10).text("Your rental agreement offers, for an additional charge, an optional waiver to cover all or a part of your responsibility for damage to or loss of the vehicle: Before deciding whether to purchase the walver, you may wish to determine whether your own automobile insurance or credit card agreement provides you coverage for rental vehicle damage or loss and determine the amount of the deductible under your own insurance coverage. The purchase of the waiver is not mandatory. The waiver is not Insurance. I acknowledge that I have received and read a copy of this.").moveDown(.7)
     doc.text("Renters Signature").moveDown(.7)
-    doc.moveTo(doc.x, doc.y).lineTo(doc.page.width-doc.page.margins.left,doc.y).dash(5, {space: 5}).stroke().moveDown(.8)
+    doc.opacity(1).moveTo(doc.x, doc.y).lineTo(doc.page.width-doc.page.margins.left,doc.y).dash(5, {space: 5}).stroke().moveDown(.8)
     doc.text("Additional Driver 1").moveDown(.7)
     doc.moveTo(doc.x, doc.y).lineTo(doc.page.width-doc.page.margins.left,doc.y).dash(5, {space: 5}).stroke().moveDown(.8)
     doc.end();

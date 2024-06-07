@@ -10,7 +10,7 @@ const authDocument: RouteConfig[] = [
           body: {
             content: {
               "application/json": {
-                schema: SummarySchema.openapi("UserAuth"),
+                schema: SummarySchema.openapi("PDF SChema"),
               },
             },
           },
@@ -20,7 +20,10 @@ const authDocument: RouteConfig[] = [
             description: "",
             content: {
               "application/json": {
-                schema: SummarySchema.openapi("AuthResponse"),
+                schema: {
+                    type:'string',
+                    format:'binary'
+                },
               },
             },
           },
