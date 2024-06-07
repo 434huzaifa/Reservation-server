@@ -34,7 +34,7 @@ npm run dev
 
 live Frontend: [https://reservation-iota-rosy.vercel.app/](https://reservation-iota-rosy.vercel.app/)
 
-live backend: [https://reservation-server-tvfn.onrender.com](https://reservation-server-tvfn.onrender.com)
+live backend: [https://reservation-server-gzs9.onrender.com](https://reservation-server-gzs9.onrender.com)
 
 Swagger Doc: [https://reservation-server-tvfn.onrender.com/docs](https://reservation-server-tvfn.onrender.com/docs)
 
