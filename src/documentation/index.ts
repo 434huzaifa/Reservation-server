@@ -125,6 +125,10 @@ const config: OpenAPIObjectConfig = {
   },
   servers: [
     {
+      url:"https://reservation-server-tvfn.onrender.com",
+      description: "Hosted good old render. so wait like a old man",
+    },
+    {
       url: "http://localhost:3030",
       description: "If you run your local server at localhost:3030",
     },

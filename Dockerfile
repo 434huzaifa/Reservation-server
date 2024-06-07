@@ -10,6 +10,8 @@ COPY src ./src
     
 COPY public ./public
 
+COPY src/fonts ./dist/fonts
+
 COPY tsconfig.json ./
 
 RUN npm run build
