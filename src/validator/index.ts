@@ -14,7 +14,7 @@ export const SummarySchema = z.object({
     type: z.string(),
     make: z.string(),
     model: z.string(),
-    year: z.string(),
+    year: z.number(),
   }),
   reservationId: z.string().min(3).optional(),
   pickupdate: z.string().refine(
