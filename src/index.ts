@@ -2,10 +2,11 @@ import express, { NextFunction, Request, Response } from "express";
 import logger from "morgan";
 import dayjs from "dayjs";
 import cors from "cors";
-// import swaggerUi, { SwaggerUiOptions } from "swagger-ui-express";
+import swaggerUi, { SwaggerUiOptions } from "swagger-ui-express";
 import cookieParser from "cookie-parser";
 import path from "path";
 import router from "./router";
+import { generator } from "./documentation";
 const app = express();
 const port = process.env.PORT || 3030;
 
@@ -41,11 +42,11 @@ app.get("/", (req, res) => {
 });
 
 
-// const options: SwaggerUiOptions = {
-//   customSiteTitle: "HospitalityHub",
-//   customfavIcon: "/hotel.png",
-// };
-// app.use("/docs", swaggerUi.serve, swaggerUi.setup(generator, options));
+const options: SwaggerUiOptions = {
+  customSiteTitle: "Reservation",
+  customfavIcon: "/sport.png",
+};
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(generator, options));
 
 app.listen(port, () => {
   console.log(`I AM RUNNING ON http://localhost:${port}`);

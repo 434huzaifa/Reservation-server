@@ -3,9 +3,7 @@ import { boldPath, errorHandler, normalPath } from "../util";
 import z from "zod";
 import { SummarySchema } from "../validator";
 import PDFDocument from "pdfkit-table";
-import fs from "fs";
 import path from "path";
-import dayjs from "dayjs";
 type IUserAuthBody = z.infer<typeof SummarySchema>;
 export function pdfGenerator(
   req: Request<{}, {}, IUserAuthBody>,
@@ -101,16 +99,16 @@ export function pdfGenerator(
           Unit: { label: item.Unit ? item.Unit.toFixed(2).toString() : "" },
           Rate: { label: item.Rate ? item.Rate.toFixed(2).toString() : "" },
           Total: {
-            label: item.Total ? "-" + item.Total.toFixed(2).toString() : "",
+            label: item.Total ? "-$" + item.Total.toFixed(2).toString() : "",
           },
         };
-      } else if (item.Charge == "Return Tax") {
+      } else if (item.Charge == "Rental Tax") {
         return {
           Charge: { label: item.Charge.toString() + "(%)" },
           Unit: { label: item.Unit ? item.Unit.toFixed(2).toString() : "" },
           Rate: { label: item.Rate ? item.Rate.toFixed(2).toString() : "" },
           Total: {
-            label: item.Total ? "+" + item.Total.toFixed(2).toString() : "",
+            label: item.Total ? "+$" + item.Total.toFixed(2).toString() : "",
           },
         };
       } else {
