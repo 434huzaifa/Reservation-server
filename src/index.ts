@@ -5,6 +5,7 @@ import cors from "cors";
 // import swaggerUi, { SwaggerUiOptions } from "swagger-ui-express";
 import cookieParser from "cookie-parser";
 import path from "path";
+import router from "./router";
 const app = express();
 const port = process.env.PORT || 3030;
 
@@ -34,10 +35,11 @@ app.use(
   })
 );
 app.use(cookieParser());
-
+app.use("/",router)
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 });
+
 
 // const options: SwaggerUiOptions = {
 //   customSiteTitle: "HospitalityHub",

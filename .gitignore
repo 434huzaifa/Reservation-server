@@ -4,3 +4,4 @@ migrations
 .src
 .vercel
 dist
+*.pdf
