@@ -13,7 +13,6 @@ export function pdfGenerator(
 ) {
   try {
     SummarySchema.parse(req.body);
-    console.log(req.body);
     const doc = new PDFDocument({
       font: normalPath,
       info: { Title: "Reserve Receipt", Author: "github.com/434huzaifa" },
@@ -23,7 +22,10 @@ export function pdfGenerator(
     let maxWidth = doc.page.width / 2 - 5 - 50;
     doc.x = doc.page.margins.left;
     doc.y = doc.page.margins.top;
-    doc.pipe(fs.createWriteStream(`output.pdf`));
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename="${req.body.personalInfo.FirstName} ${req.body.personalInfo.LastName}.pdf"`);
+    doc.pipe(res);
+    // doc.pipe(fs.createWriteStream(`output.pdf`));
     doc.image(path.join(__dirname, "..", "..", "public", "sport.png"), {
       width: 80,
     });
@@ -164,7 +166,7 @@ export function pdfGenerator(
       .dash(5, { space: 5 })
       .stroke();
     doc.end();
-    res.send(200);
+    res.status(200);
   } catch (error) {
     errorHandler(res, error);
   }
